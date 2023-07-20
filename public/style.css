@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    background: url(/images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 500;
+}
+
+nav.navigation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav.navigation div.name {
+    /* width: 100%;
+    height: 100%; */
+    color: white;
+    font-size: 40px;
+}
+
+
+nav.navigation div.onlineUsers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20px;
+    right: 55px;
+    /* background-color: red; */
+    font-weight: 600;
+    color: #E0EAFC;
+}
+
+.blink{
+    width: 15px;
+    height: 15px;
+    /* background-color: green; */
+    margin-left: 10px;
+    border-radius: 50%;
+    animation: blinkanimation 2s infinite;
+}
+
+@keyframes blinkanimation{
+
+    from{
+        background-color: green;
+    }
+    50%{
+        background-color: white;
+    }
+    to{
+        background-color: green;
+    }
+
+}
+
+
+
+
+main {
+    width: 100%;
+    /* background-color: red; */
+    height: 90.8vh;
+
+    position: relative;
+}
+
+
+
+.chatbox {
+    width: 100%;
+    height: 589px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    /* background-color: #f80000; */
+    overflow-y: scroll;
+}
+
+.chatbox {
+    width: 100%;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* background-color: red; */
+
+}
+
+.chatbox::-webkit-scrollbar{
+    /* display: none; */
+    width: 8px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.chatbox::-webkit-scrollbar-thumb{
+    background-color: black;
+    width: 8px;
+    border-radius: 20px;
+
+}
+
+.chatbox ul {
+    /* position: relative; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.chatbox ul .left {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+
+.chatbox ul .right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.chatbox ul li div {
+    max-width: 75%;
+    margin: 5px 2px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #E0EAFC;
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+
+}
+
+.user {
+    max-width: 190px;
+    overflow: hidden;
+    height: 28px;
+    background: #4B79A1;
+    background: -webkit-linear-gradient(to right, #283E51, #4B79A1);
+    background: linear-gradient(to right, #283E51, #4B79A1);
+    color: #CFDEF3;
+    font-weight: bolder;
+
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+}
+
+.time{
+    margin-top: 15px;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+main form {
+    display: flex;
+    align-items: center;
+    width: 98%;
+    height: 42px;
+    position: fixed;
+    bottom: 1px;
+    left: 1%;
+    border-radius: 100px;
+    z-index: 500;
+    background: url(/images/bg.jpg);
+}
+
+main form input {
+    width: 95%;
+    height: 100%;
+    border-right: none;
+    bottom: 100px;
+    left: 0px;
+    border-radius: 100px 0 0 100px;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+main form button {
+    width: 75px;
+    height: 42px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: #8636FF;
+    border-radius: 0 100px 100px 0;
+}
+
+
+
+
+@media screen and (max-width: 654px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 243px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 110px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+@media screen and (max-width: 414px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 140px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+@media screen and (max-width: 360px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 105px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+@media screen and (max-width: 540px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 190px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+@media screen and (max-width: 280px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 70px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+@media screen and (max-width: 412px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 130px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+@media screen and (max-width: 336px) {
+    nav.navigation div.onlineUsers{
+        top: 65px;
+        right: 90px;
+        background: url(/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}

@@ -1,76 +1,118 @@
 const express = require("express");
-const app = express()
-const server = require("http").Server(app)
-const io = require("socket.io")(server)
-const {v4 : uuidv4} = require("uuid")
+const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 const { log } = require("console");
 
-
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-app.get("/", function(req,res){
-    res.redirect(`/chat/${uuidv4()}`)
-    // res.sendFile(__dirname + "/views/index.html")
-})
+app.get("/", function (req, res) {
+  res.redirect(`/chat/${uuidv4()}`);
+  // res.sendFile(__dirname + "/views/index.html")
+});
+
+app.get("/chat/:room", function (req, res) {
+  // console.log(req.params.room);
+  res.render("chat", { roomId: req.params.room });
+});
+
+let userName = "";
+// let users = 0;
+// let room_id = "";
 
 
-app.get("/chat/:room", function(req,res){
-    res.sendFile(__dirname + "/views/index.html")
-})
+io.on("connection", function (socket) {
 
-let users = 0
-let userName = ""
+    
+    
+
+  
+
+  socket.on("join-room", (roomId) => {
+    
+    socket.join(roomId);
+    // users++;
+
+    // socket.to(room_id).emit("totalUsers", users)
+
+    // console.log(roomId);
+
+    // room_id = roomId
 
 
-io.on("connection",function(socket){
-    console.log("user connected");
+    // io.in(roomId).allSockets().then(res=>{
 
-    users++
-    console.log(users);
+    //     console.log(res.size) 
+    //     // console.log(typeof(res.size));
+    //     users = res.size;
+    //     // socket.to(room_id).emit("totalUsers", users)
 
-    socket.emit("totalUsers", users)
-    socket.broadcast.emit("totalUsers", users)
+    // })
+    
 
-    socket.on("newUser", function(data){
-        socket.broadcast.emit("getMsg", data)
+    // socket.to(roomId).emit("totalUsers", users);
+    // socket.to(roomId).broadcast.emit("totalUsers", users)
+    // socket.broadcast.to(roomId).emit("totalUsers", users);
+    // socket.to(roomId).emit("totalUsers", users)
 
-        userName = data.userName
+    socket.on("newUser", function (data) {
+      // socket.to(roomId).broadcast.emit("getMsg", data)
+      socket.broadcast.to(roomId).emit("getMsg", data);
+      // socket.to(roomId).emit("getMsg", data)
 
-    })
+      userName = data.userName;
+    });
 
     // socket.broadcast.emit("newUser" )
 
-    
+    socket.on("sendMsg", function (data) {
+      // socket.to(roomId).broadcast.emit("getMsg", data)
+      socket.broadcast.to(roomId).emit("getMsg", data);
+      // socket.to(roomId).emit("getMsg", data)
 
-    socket.on("sendMsg", function(data){
+      // console.log(data);
+    });
 
-        socket.broadcast.emit("getMsg", data)
+    socket.on("disconnect", function (data) {
+    //   console.log("User Disconnected");
+    //   socket.leave(roomId);
 
-        // console.log(data);
-    })
+    //   users--;
 
+    //   socket.to(roomId).emit("totalUsers", users)
+    //   socket.broadcast.to(roomId).emit("totalUsers", users);
+      // socket.broadcast.emit("totalUsers", users)
 
-    socket.on("disconnect", function(data){
-        console.log("User Disconnected");
+      // console.log(userName);
 
-        users--
+      // socket.to(roomId).broadcast.emit("userLeft", {
+      //     userName : userName,
+      //     message: "Disconnected!"
+      // })
 
-        socket.emit("totalUsers", users)
-        socket.broadcast.emit("totalUsers", users)
-
-        // console.log(userName);
-
-       
-            socket.broadcast.emit("userLeft", {
-                userName : userName,
-                message: "Disconnected!"
-            })
-    
-        
-    })
-})
-
+      socket.broadcast.to(roomId).emit("userLeft", {
+        userName: userName,
+        message: "Disconnected!",
+      });
+    });
+  });
 
 
-server.listen(3000)
+  
+//   socket.emit("totalUsers", users)
+
+//   console.log(users);
+//   console.log(room_id);
+
+
+
+
+  
+
+
+});
+
+server.listen(3000);

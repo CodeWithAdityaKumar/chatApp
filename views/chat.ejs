@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navigation">
+            <div class="name">
+                AKCHAT
+            </div>
+            <!-- <div class="onlineUsers">
+                Online Users : 25
+                <div class="blink"></div>
+            </div> -->
+        </nav>
+    </header>
+
+    <main>
+
+
+        <div class="chatbox">
+            <ul class="chatbox-ul">
+                <!-- <li class="left">
+                   <div>
+                    <p class="user">Rohan kumar sign</p>
+                    <p class="message">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis fugit impedit obcaecati libero debitis! Aliquid, deleniti quisquam at id nemo aut, nisi vel, magni expedita eaque ratione ad consequatur similique doloremque nostrum exercitationem doloribus assumenda accusantium minus repellendus animi non? Culpa doloribus aspernatur cupiditate exercitationem laborum rem reiciendis veritatis excepturi?
+                    </p>
+                    <p class="time">01:30 PM</p>
+                   </div>
+                </li>
+                <li class="right">
+                    <div>
+                        <p class="user">Rohan</p>
+                        <p class="message">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis fugit impedit obcaecati libero debitis! Aliquid, deleniti quisquam at id nemo aut, nisi vel, magni expedita eaque ratione ad consequatur similique doloremque nostrum exercitationem doloribus assumenda accusantium minus repellendus animi non? Culpa doloribus aspernatur cupiditate exercitationem laborum rem reiciendis veritatis excepturi?
+                        </p>
+                        <p class="time">01:30 PM</p>
+                       </div>
+                </li> -->
+            </ul>
+        </div>
+
+
+
+        <form>
+            <input type="text" id="msg" placeholder="Write here......" autofocus>
+            <button type="submit">
+
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path
+                        d="M4.01 6.03l7.51 3.22-7.52-1 .01-2.22m7.5 8.72L4 17.97v-2.22l7.51-1M2.01 3L2 10l15 2-15 2 .01 7L23 12 2.01 3z" />
+                </svg>
+            </button>
+        </form>
+    </main>
+
+    <script>
+        const ROOM_ID = "<%= roomId %>"
+      </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+
+</body>
+
+</html>

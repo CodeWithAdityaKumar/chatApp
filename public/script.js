@@ -5,7 +5,20 @@ const chatbox = document.querySelector(".chatbox");
 const msginp = document.querySelector("#msg");
 const form = document.querySelector("form");
 
+
+
+socket.emit('join-room', ROOM_ID)
+
 let msgliappend = (user, message, time, position) => {
+
+
+  if(position === "left"){
+    let ting = new Audio("/music/ting.mp3")
+    ting.play();
+  }
+
+
+
   let msgLi = document.createElement("li");
   let messageContainer = `
     
@@ -23,7 +36,11 @@ let msgliappend = (user, message, time, position) => {
   msgLi.classList.add(position);
   chatboxUl.appendChild(msgLi);
 
+  
+
   chatbox.scrollTo(0, document.querySelector(".chatbox").scrollHeight);
+
+
 };
 
 // let userName = prompt("Please enter Your Name : ");
@@ -127,6 +144,11 @@ form.addEventListener("submit", function (e) {
 });
 
 socket.on("getMsg", function (data) {
+  let ting = new Audio("/music/ting.mp3")
+
+    ting.play();
+  
+
   msgliappend(data.userName, data.message, data.time, "left");
   window.scrollTo(0, document.body.scrollHeight);
 });
@@ -144,14 +166,16 @@ socket.on("newUser", function (data) {
   msgliappend(data.userName, data.message, data.time, "left");
 });
 
-socket.on("totalUsers", function (data) {
-  let onlineUsers = document.querySelector(".onlineUsers");
+// socket.on("totalUsers", function (data) {
+//   let onlineUsers = document.querySelector(".onlineUsers");
 
-  onlineUsers.innerHTML = `
-    Online Users : ${data}
-    <div class="blink"></div>
-    `;
-});
+//   console.log(data);
+
+//   onlineUsers.innerHTML = `
+//     Online Users : ${data}
+//     <div class="blink"></div>
+//     `;
+// });
 
 // msgliappend("Aditya" , "Hello" , "01:30 PM" , "right")
 // msgliappend("Aditya" , "Hii" , "01:30 PM" , "right")
